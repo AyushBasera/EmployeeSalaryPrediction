@@ -3,7 +3,6 @@ from .forms import SalaryForm
 import joblib
 import numpy as np
 import pandas as pd
-import shap
 
 # Load ML components
 model = joblib.load('predictor/salary_model.pkl')
