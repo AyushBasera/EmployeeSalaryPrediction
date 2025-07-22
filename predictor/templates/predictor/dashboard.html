@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salary Drivers Dashboard</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: #f0f2f5; 
+            color: #333;
+        }
+        .container { 
+            max-width: 1000px; 
+            margin: auto; 
+            padding: 20px; 
+        }
+        .plot-container {
+            background-color: #fff;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1, h2 { 
+            text-align: center; 
+            color: #1a237e; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Salary Drivers: A Data-Driven Analysis</h1>
+        <p style="text-align: center;">Explore the inherent patterns and correlations that influence salary, based on the full dataset.</p>
+
+        <div class="plot-container">
+            <h2>Overall Income Distribution</h2>
+            {{ plot_income_dist|safe }}
+        </div>
+        
+        <div class="plot-container">
+            <h2>Educational_number vs. Income</h2>
+            {{ plot_education|safe }}
+        </div>
+        
+        <div class="plot-container">
+            <h2>Age vs. Income</h2>
+            {{ plot_age|safe }}
+        </div>
+        
+        <div class="plot-container">
+            <h2>Occupation vs. Income</h2>
+            {{ plot_occupation|safe }}
+        </div>
+        
+        <div class="plot-container">
+            <h2>Capital Gain vs. Income</h2>
+            {{ plot_capital_gain|safe }}
+        </div>
+    </div>
+</body>
+</html>
