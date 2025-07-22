@@ -136,11 +136,9 @@ joblib.dump(le_income, 'predictor/le_income.pkl')
 
 
 #Model Interpretability with SHAP
-import shap
 
-#cwe are creating a special kind of explainer object
+# we are creating a special kind of explainer object
 # specifically designed to work efficiently with tree-based models.
-explainer = shap.TreeExplainer(model)
 
 # explainer variable is capable of calculating SHAP values for new
 # data points
@@ -148,4 +146,3 @@ explainer = shap.TreeExplainer(model)
 # explainer is capable of 
 #   calculating SHAP values for a sample of training data -> used for summary visualization
 #   calculating SHAP values for a single prediction
-joblib.dump(explainer,'predictor/explainer.pkl')

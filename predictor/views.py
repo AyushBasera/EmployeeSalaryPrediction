@@ -10,7 +10,6 @@ model = joblib.load('predictor/salary_model.pkl')
 scaler = joblib.load('predictor/scaler.pkl')
 preprocessor = joblib.load('predictor/preprocessor.pkl')
 le_income = joblib.load('predictor/le_income.pkl')
-explainer = joblib.load('predictor/explainer.pkl')
 
 # Extract proper feature names from preprocessor
 categorical_features = ['workclass', 'marital-status', 'occupation', 'relationship', 'race', 'gender', 'native-country']
@@ -75,6 +74,11 @@ def predict_salary(request):
                 prediction = model.predict(x_scaled)[0]
                 # Manually decode label example-> ">50k" for 1
                 prediction_text = le_income.inverse_transform([prediction])[0]
+
+
+                import shap 
+                explainer = shap.TreeExplainer(model)
+
 
                 shap_values = explainer.shap_values(x_scaled)
 
@@ -177,9 +181,9 @@ def eda_dashboard_view(request):
 
     # Using the same data and color map
     SALARY_COLOR_MAP = {
-        '>50K': 'Red', 
-        '<=50K': '#Purple' 
-    }
+    '>50K': '#FF0000',  
+    '<=50K': '#800080' 
+}
     # 2. Education vs. Income Stacked Bar Chart
     fig_education = px.bar(
         df.groupby(['educational-num', 'income_class']).size().reset_index(name='count'),
